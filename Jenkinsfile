@@ -53,9 +53,9 @@ pipeline {
             steps {
                 script {
                     echo 'Menunggu selama 1 menit sebelum melanjutkan...'
-                    sleep time: 60, unit: 'SECONDS' {
-                        sh 'echo "Selesai"'
-                    }                
+                    sleep 60
+                    echo "Selesai"
+         
                 }
             }
         }
