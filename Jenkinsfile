@@ -41,8 +41,7 @@ pipeline {
                     unstash(name: 'compiled-results') 
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
                 }
-                echo 'Deploy sudah selesai, menunggu selama 1 menit sebelum melanjutkan untuk mengakhiri...'
-                sleep time: 60, unit: 'SECONDS'
+                input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)'
             }
             post {
                 success {
