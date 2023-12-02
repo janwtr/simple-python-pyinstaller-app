@@ -31,11 +31,7 @@ pipeline {
             }
         }
         stage('Deploy') { 
-            agent {
-                docker {
-                    image 'python:3.12.0-alpine3.18'
-                }
-            }
+            agent any
             environment { 
                 VOLUME = '$(pwd)/sources:/src'
                 IMAGE = 'cdrx/pyinstaller-linux:python2'
@@ -44,12 +40,6 @@ pipeline {
                 dir(path: env.BUILD_ID) { 
                     unstash(name: 'compiled-results') 
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
-                }
-                script {
-                    echo 'Menunggu selama 1 menit sebelum melanjutkan...'
-                    timeout(time: 1, unit: 'MINUTES') {
-                        sh 'echo "Selesai"'
-                    }
                 }
             }
             post {
