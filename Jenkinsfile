@@ -48,8 +48,6 @@ pipeline {
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
                 }
             }
-        }
-        stage('Jeda') {
             steps {
                 script {
                     echo 'Menunggu selama 1 menit sebelum melanjutkan...'
