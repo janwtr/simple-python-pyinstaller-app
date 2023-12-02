@@ -47,6 +47,12 @@ pipeline {
                     archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals" 
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
                 }
+                steps {
+                    script {
+                        echo 'Deploy sudah selesai, menunggu selama 1 menit sebelum melanjutkan untuk mengakhiri...'
+                        sleep time: 60, unit: 'SECONDS'
+                    }
+                }
             }
         }
     }
