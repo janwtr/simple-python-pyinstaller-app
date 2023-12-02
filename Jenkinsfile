@@ -41,16 +41,16 @@ pipeline {
                     unstash(name: 'compiled-results') 
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
                 }
-                script {
-                    echo 'Menunggu selama 1 menit sebelum melanjutkan...'
-                    sleep 60
-                    echo "Menunggu 1 menit selesai..."
-                }
             }
             post {
                 success {
                     archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals" 
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
+                }
+                script {
+                    echo 'Menunggu selama 1 menit sebelum melanjutkan...'
+                    sleep 60
+                    echo "Menunggu 1 menit selesai..."
                 }
             }
         }
