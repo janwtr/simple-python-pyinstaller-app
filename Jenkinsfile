@@ -56,6 +56,8 @@ pipeline {
                     timeout(time: 2, unit: 'MINUTES') {
                         sh 'echo "Selesai"'
                     }
+                    input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)'
+                
                 }
             }
         }
