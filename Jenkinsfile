@@ -52,8 +52,8 @@ pipeline {
         stage('Jeda') {
             steps {
                 script {
-                    echo 'Menunggu selama 1 menit sebelum melanjutkan...'
-                    timeout(time: 1, unit: 'MINUTES') {
+                    echo 'Menunggu selama 2 menit sebelum melanjutkan...'
+                    timeout(time: 2, unit: 'MINUTES') {
                         sh 'echo "Selesai"'
                     }
                 }
