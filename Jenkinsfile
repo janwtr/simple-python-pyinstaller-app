@@ -41,12 +41,21 @@ pipeline {
                     unstash(name: 'compiled-results') 
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
                 }
-                input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)'
             }
             post {
                 success {
                     archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals" 
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
+                }
+            }
+        }
+        stage('Jeda') {
+            steps {
+                script {
+                    echo 'Menunggu selama 1 menit sebelum melanjutkan...'
+                    timeout(time: 1, unit: 'MINUTES') {
+                        sh 'echo "Selesai"'
+                    }
                 }
             }
         }
