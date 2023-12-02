@@ -52,7 +52,7 @@ pipeline {
                 script {
                     echo 'Menunggu selama 1 menit sebelum melanjutkan...'
                     sleep 60
-                    echo "Selesai"
+                    echo "Menunggu 1 menit selesai..."
          
                 }
             }
