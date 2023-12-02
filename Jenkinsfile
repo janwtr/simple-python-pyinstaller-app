@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     options {
         skipStagesAfterUnstable()
     }
@@ -46,6 +46,16 @@ pipeline {
                 success {
                     archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals" 
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
+                }
+            }
+        }
+        stage('Jeda') {
+            steps {
+                script {
+                    echo 'Menunggu selama 1 menit sebelum melanjutkan...'
+                    timeout(time: 1, unit: 'MINUTES') {
+                        sh 'echo "Selesai"'
+                    }
                 }
             }
         }
